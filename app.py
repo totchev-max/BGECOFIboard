@@ -1,4 +1,4 @@
-import streamlit as st
+st.set_option("client.showErrorDetails", True)import streamlit as st
 
 if "history" not in st.session_state:
     st.session_state.history = []
