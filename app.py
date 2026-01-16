@@ -1,31 +1,29 @@
-st.set_option("client.showErrorDetails", True)import streamlit as st
-
-if "history" not in st.session_state:
-    st.session_state.history = []
-
-if "initialized" not in st.session_state:
-    st.session_state.initialized = Trueimport os
+import os
 from dataclasses import dataclass
 from datetime import datetime
 import streamlit as st
 
-# Optional AI (works only if OPENAI_API_KEY is set)
-try:
-    from openai import OpenAI
-except Exception:
-    OpenAI = None
+# DEBUG – показва пълни грешки
+st.set_option("client.showErrorDetails", True)
 
-# -----------------------------
-# Page config
-# -----------------------------
+# Page config – ЗАДЪЛЖИТЕЛНО първо Streamlit извикване
 st.set_page_config(
     page_title="Национален финансов борд (DEMO)",
     layout="wide",
 )
 
-# -----------------------------
-# Helpers / Models
-# -----------------------------
+# Optional AI
+try:
+    from openai import OpenAI
+except Exception:
+    OpenAI = None
+
+# Session state defaults
+if "history" not in st.session_state:
+    st.session_state["history"] = []
+
+if "initialized" not in st.session_state:
+    st.session_state["initialized"] = True
 @dataclass
 class Goals:
     max_deficit_pct: float = 0.03   # 3%
