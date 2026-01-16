@@ -1,4 +1,10 @@
-import os
+import streamlit as st
+
+if "history" not in st.session_state:
+    st.session_state.history = []
+
+if "initialized" not in st.session_state:
+    st.session_state.initialized = Trueimport os
 from dataclasses import dataclass
 from datetime import datetime
 import streamlit as st
